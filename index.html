@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenfield Senior High School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #f5a623;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0d3a73;
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .logo p {
+            color: var(--dark);
+            font-size: 0.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            padding: 10px 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Highlights */
+        .highlights {
+            padding: 60px 0;
+            background: var(--light);
+        }
+
+        .highlights .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 30%;
+            min-width: 250px;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .highlight-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .highlight-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* News Preview */
+        .news-preview {
+            padding: 60px 0;
+        }
+
+        .news-preview h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .news-grid article {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .news-grid article:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-grid h3 {
+            padding: 15px;
+            color: var(--primary);
+        }
+
+        .news-grid p {
+            padding: 0 15px 15px;
+        }
+
+        .read-more {
+            display: block;
+            padding: 10px 15px;
+            background: var(--light);
+            color: var(--primary);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #ddd;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                text-align: center;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .highlight-card {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        /* Tab System for Multiple Pages */
+        .page {
+            display: none;
+            padding: 80px 0 40px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+
+        /* About Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .mission-vision {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        /* Academics Page */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .program-info {
+            padding: 20px;
+        }
+
+        .program-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+        }
+
+        .contact-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #0d3a73;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>CHRIST EBBASY SHS</h1>
+                <p>Excellence in Education Since 2013</p>
+            </div>
+            <nav>
+                <ul id="main-nav">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="academics">Academics</a></li>
+                    <li><a href="#" class="nav-link" data-page="admissions">Admissions</a></li>
+                    <li><a href="#" class="nav-link" data-page="faculty">Faculty</a></li>
+                    <li><a href="#" class="nav-link" data-page="student-life">Student Life</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h2>Preparing Students for Success</h2>
+                <p>Join our community of learners and achievers</p>
+                <a href="#" class="btn nav-link" data-page="admissions">Apply Now</a>
+            </div>
+        </section>
+
+        <section class="highlights">
+            <div class="container">
+                <div class="highlight-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>98% Graduation Rate</h3>
+                    <p>Consistently high graduation and college acceptance rates</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>25+ Clubs</h3>
+                    <p>Diverse extracurricular activities for all interests</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Expert Faculty</h3>
+                    <p>Dedicated teachers with advanced degrees</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="news-preview">
+            <div class="container">
+                <h2>Latest News</h2>
+                <div class="news-grid">
+                    <article>
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Science fair winners">
+                        <h3>Science Team Wins Regional Fair</h3>
+                        <p>Our students took top honors at the annual STEM competition with their innovative renewable energy project.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </article>
+                    <article>
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Graduation ceremony">
+                        <h3>Class of 2023 Graduation</h3>
+                        <p>Celebrating our largest graduating class in school history with 98% college acceptance rate.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </article>
+                    <article>
+                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="New building">
+                        <h3>New Science Wing Opens</h3>
+                        <p>State-of-the-art facilities now available for students featuring modern labs and technology.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <div class="container">
+            <h2>About Our School</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Founded in 2013, CHRIST EBBASY Senior High School has been a cornerstone of educational excellence in our community. Our commitment to fostering intellectual growth, character development, and lifelong learning has made us one of the most respected institutions in the region.</p>
+                    <p>With a student body of 1,200 students and a faculty-student ratio of 1:15, we provide personalized attention to ensure each student reaches their full potential.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="School building">
+                </div>
+            </div>
+            
+            <div class="mission-vision">
+                <h3>Our Mission</h3>
+                <p>To empower students to achieve academic excellence, develop strong character, and become responsible global citizens through innovative teaching and a supportive learning environment.</p>
+                
+                <h3>Our Vision</h3>
+                <p>To be recognized as a leader in secondary education that prepares students to meet the challenges of higher education and the modern workforce while contributing positively to society.</p>
+                
+                <h3>Core Values</h3>
+                <ul>
+                    <li>Excellence in teaching and learning</li>
+                    <li>Integrity and ethical behavior</li>
+                    <li>Respect for diversity</li>
+                    <li>Community engagement</li>
+                    <li>Lifelong learning</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academics Page -->
+    <section id="academics" class="page">
+        <div class="container">
+            <h2>Academic Programs</h2>
+            <p>Greenfield SHS offers a comprehensive curriculum designed to prepare students for college and career success. Our programs combine rigorous academics with practical applications.</p>
+            
+            <div class="programs-grid">
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="STEM program">
+                    <div class="program-info">
+                        <h3>STEM Program</h3>
+                        <p>Our Science, Technology, Engineering, and Mathematics program prepares students for careers in fast-growing fields with hands-on learning and research opportunities.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Humanities program">
+                    <div class="program-info">
+                        <h3>Humanities Program</h3>
+                        <p>Explore literature, history, philosophy, and the arts through our comprehensive humanities program that develops critical thinking and communication skills.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Arts program">
+                    <div class="program-info">
+                        <h3>Visual & Performing Arts</h3>
+                        <p>Develop your creative talents through our award-winning arts program offering courses in music, theater, visual arts, and digital media.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions Page -->
+    <section id="admissions" class="page">
+        <div class="container">
+            <h2>Admissions Process</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>How to Apply</h3>
+                    <p>We welcome applications from students who demonstrate academic potential, good character, and a commitment to learning. The admissions process includes:</p>
+                    <ol>
+                        <li>Complete the online application form</li>
+                        <li>Submit academic records from previous school</li>
+                        <li>Take our entrance assessment</li>
+                        <li>Participate in an interview (for some programs)</li>
+                        <li>Receive admission decision within 4 weeks</li>
+                    </ol>
+                    
+                    <h3>Important Dates</h3>
+                    <ul>
+                        <li>Application Opens: January 15</li>
+                        <li>Priority Deadline: March 1</li>
+                        <li>Final Deadline: April 15</li>
+                        <li>Entrance Exams: February-May</li>
+                    </ul>
+                    
+                    <a href="#" class="btn">Begin Application</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Students in classroom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Page -->
+    <section id="faculty" class="page">
+        <div class="container">
+            <h2>Our Faculty</h2>
+            <p>CHRIST EBBASY SHS boasts a team of highly qualified educators committed to student success. 85% of our faculty hold advanced degrees in their fields.</p>
+            
+            <div class="programs-grid">
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80" alt="Dr. Sarah Johnson">
+                    <div class="program-info">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p><strong>Department:</strong> Science<br>
+                        <strong>Education:</strong> PhD in Chemistry, Stanford University</p>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" alt="Mr. David Chen">
+                    <div class="program-info">
+                        <h3>Mr. David Chen</h3>
+                        <p><strong>Department:</strong> Mathematics<br>
+                        <strong>Education:</strong> MS in Mathematics, MIT</p>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" alt="Ms. Maria Rodriguez">
+                    <div class="program-info">
+                        <h3>Ms. Maria Rodriguez</h3>
+                        <p><strong>Department:</strong> Humanities<br>
+                        <strong>Education:</strong> MA in Literature, Columbia University</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Life Page -->
+    <section id="student-life" class="page">
+        <div class="container">
+            <h2>Student Life</h2>
+            <p>Beyond the classroom, CHRIST EBBASY SHS offers a vibrant student life with numerous opportunities for personal growth, leadership development, and community engagement.</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Clubs & Organizations</h3>
+                    <p>With over 25 student-run clubs, there's something for everyone:</p>
+                    <ul>
+                        <li>Student Government</li>
+                        <li>Debate Team</li>
+                        <li>Robotics Club</li>
+                        <li>Environmental Club</li>
+                        <li>Drama Club</li>
+                        <li>Jazz Band</li>
+                        <li>And many more...</li>
+                    </ul>
+                    
+                    <h3>Athletics</h3>
+                    <p>Our athletic program includes 12 varsity sports with state championship titles in basketball, soccer, and track & field.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Student activities">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>School Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 123 Education Avenue, ChristEbbasy, CA 12345</p>
+                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@ChristEbbasyshs.edu</p>
+                    <p><i class="fas fa-clock"></i> <strong>Office Hours:</strong> Monday-Friday, 8:00 AM - 4:30 PM</p>
+                    
+                    <h3>Directions</h3>
+                    <p>We're located in the heart of Greenfield, just off Main Street. Free visitor parking is available in the front lot.</p>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject">
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>ChristEbbasy SHS</h3>
+                    <p>123 Education Avenue<br>ChristEbbasy, CA 12345<br>Phone: (555) 123-4567</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="nav-link" data-page="academics">Programs</a></li>
+                        <li><a href="#" class="nav-link" data-page="admissions">Apply</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="current-year"></span> ChristEbbasy Senior High School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for the website
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const navMenu = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Page Navigation System
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and pages
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show corresponding page
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('show');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Contact Form Submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will respond soon.');
+                    this.reset();
+                });
+            }
+            
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
